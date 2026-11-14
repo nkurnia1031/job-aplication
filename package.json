@@ -1,0 +1,40 @@
+{
+  "name": "job-search-assistant",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=26 <27"
+  },
+  "scripts": {
+    "dev": "concurrently -k -n server,web -c blue,green \"tsx watch src/server.ts\" \"vite --config web/vite.config.ts --host 127.0.0.1\"",
+    "build": "npm run build:server && npm run build:web",
+    "build:server": "tsc -p tsconfig.server.json",
+    "build:web": "vite build --config web/vite.config.ts",
+    "start": "node dist/server.js",
+    "db:migrate": "tsx src/db/migrate.ts",
+    "check": "npm run check:server && npm run check:web",
+    "check:server": "tsc -p tsconfig.server.json --noEmit",
+    "check:web": "svelte-check --tsconfig ./web/tsconfig.json"
+  },
+  "dependencies": {
+    "@fastify/static": "^10.1.10",
+    "@modelcontextprotocol/fastify": "^2.0.1",
+    "@modelcontextprotocol/node": "^2.0.1",
+    "@modelcontextprotocol/server": "^2.4.0",
+    "dotenv": "^17.2.3",
+    "drizzle-orm": "^0.45.4",
+    "fastify": "^5.6.2",
+    "mysql2": "^3.15.3",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^6.2.1",
+    "@types/node": "^26.0.0",
+    "concurrently": "^9.2.1",
+    "svelte": "^5.43.0",
+    "svelte-check": "^4.3.3",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "vite": "^7.2.2"
+  }
+}

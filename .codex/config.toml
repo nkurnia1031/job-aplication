@@ -1,0 +1,4 @@
+[mcp_servers.job_search_app]
+url = "http://127.0.0.1:3000/mcp"
+bearer_token_env_var = "JOB_APP_MCP_TOKEN"
+enabled = true
